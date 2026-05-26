@@ -1,0 +1,9 @@
+{
+  "bio": "Welcome. Add a short introduction about yourself here.",
+  "categories": {
+    "architecture": { "projects": [] },
+    "art": { "projects": [] },
+    "photography": { "projects": [] },
+    "leather": { "projects": [] }
+  }
+}

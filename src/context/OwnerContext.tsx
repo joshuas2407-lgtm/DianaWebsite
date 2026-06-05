@@ -24,7 +24,7 @@ export function OwnerProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
 
   const refresh = useCallback(async () => {
-    const res = await fetch("/api/auth/session");
+    const res = await fetch("/api/auth/session", { credentials: "include" });
     const data = (await res.json()) as { isOwner: boolean };
     setIsOwner(data.isOwner);
     setIsLoading(false);
@@ -38,6 +38,7 @@ export function OwnerProvider({ children }: { children: ReactNode }) {
     const res = await fetch("/api/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
+      credentials: "include",
       body: JSON.stringify({ password }),
     });
     if (!res.ok) return false;
@@ -46,7 +47,7 @@ export function OwnerProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const logout = useCallback(async () => {
-    await fetch("/api/auth/logout", { method: "POST" });
+    await fetch("/api/auth/logout", { method: "POST", credentials: "include" });
     setIsOwner(false);
   }, []);
 

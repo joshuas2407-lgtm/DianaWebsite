@@ -28,6 +28,7 @@ export function ImageDropzone({
         formData.append("file", file);
         const res = await fetch("/api/upload", {
           method: "POST",
+          credentials: "include",
           body: formData,
         });
         if (res.ok) {

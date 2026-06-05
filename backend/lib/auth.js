@@ -1,10 +1,9 @@
 import { SignJWT, jwtVerify } from "jose";
-import { cookies } from "next/headers";
 
-const COOKIE_NAME = "owner_session";
-const SESSION_MAX_AGE = 60 * 60 * 24 * 7; // 7 days
+export const COOKIE_NAME = "owner_session";
+export const SESSION_MAX_AGE = 60 * 60 * 24 * 7;
 
-function getSecret(): Uint8Array {
+function getSecret() {
   const secret = process.env.OWNER_SESSION_SECRET;
   if (!secret) {
     throw new Error("OWNER_SESSION_SECRET is not set");
@@ -12,7 +11,7 @@ function getSecret(): Uint8Array {
   return new TextEncoder().encode(secret);
 }
 
-export async function createOwnerSession(): Promise<string> {
+export async function createOwnerSession() {
   return new SignJWT({ role: "owner" })
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
@@ -20,9 +19,7 @@ export async function createOwnerSession(): Promise<string> {
     .sign(getSecret());
 }
 
-export async function verifyOwnerSession(
-  token: string | undefined
-): Promise<boolean> {
+export async function verifyOwnerSession(token) {
   if (!token) return false;
   try {
     const { payload } = await jwtVerify(token, getSecret());
@@ -32,16 +29,13 @@ export async function verifyOwnerSession(
   }
 }
 
-export async function isOwnerAuthenticated(): Promise<boolean> {
-  const cookieStore = await cookies();
-  const token = cookieStore.get(COOKIE_NAME)?.value;
-  return verifyOwnerSession(token);
-}
-
-export { COOKIE_NAME, SESSION_MAX_AGE };
-
-export function verifyOwnerPassword(password: string): boolean {
+export function verifyOwnerPassword(password) {
   const expected = process.env.OWNER_PASSWORD;
   if (!expected) return false;
   return password === expected;
+}
+
+export async function isOwnerAuthenticated(req) {
+  const token = req.cookies?.[COOKIE_NAME];
+  return verifyOwnerSession(token);
 }

@@ -21,12 +21,16 @@ export function EditableBio({ initialBio }: EditableBioProps) {
     await fetch("/api/content", {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
+      credentials: "include",
       body: JSON.stringify({ bio: value }),
     });
     setSaving(false);
   };
 
   if (!isOwner) {
+    if (!bio.trim()) {
+      return <div className="bio-panel__placeholder" aria-hidden />;
+    }
     return <p className="bio-panel__text">{bio}</p>;
   }
 
@@ -36,8 +40,9 @@ export function EditableBio({ initialBio }: EditableBioProps) {
         value={bio}
         onChange={(e) => setBio(e.target.value)}
         onBlur={() => void save(bio)}
-        placeholder="Write a short bio or introduction…"
-        rows={5}
+        placeholder="Write your introduction…"
+        rows={6}
+        aria-label="Introduction"
       />
       {saving && <span className="bio-panel__saving">Saving…</span>}
     </div>

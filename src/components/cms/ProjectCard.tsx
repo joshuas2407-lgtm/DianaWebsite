@@ -31,6 +31,7 @@ export function ProjectCard({
     const res = await fetch(`/api/projects/${category}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
+      credentials: "include",
       body: JSON.stringify({ projectId: project.id, ...updates }),
     });
     if (res.ok) {
@@ -45,6 +46,7 @@ export function ProjectCard({
     if (!confirm("Delete this project?")) return;
     await fetch(`/api/projects/${category}?projectId=${project.id}`, {
       method: "DELETE",
+      credentials: "include",
     });
     onDelete();
   };

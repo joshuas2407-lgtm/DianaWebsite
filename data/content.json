@@ -1,9 +1,32 @@
 {
-  "bio": "Welcome. Add a short introduction about yourself here.",
+  "bio": "I am diana",
   "categories": {
-    "architecture": { "projects": [] },
-    "art": { "projects": [] },
-    "photography": { "projects": [] },
-    "leather": { "projects": [] }
+    "architecture": {
+      "projects": [
+        {
+          "title": "New project",
+          "date": "2026-06-05",
+          "text": "",
+          "images": [],
+          "id": "a706a428-458c-4e02-ae71-a5a7099b7914"
+        },
+        {
+          "title": "New project",
+          "date": "2026-06-05",
+          "text": "",
+          "images": [],
+          "id": "c755801f-7b78-4436-b933-d6d7c6809037"
+        }
+      ]
+    },
+    "art": {
+      "projects": []
+    },
+    "photography": {
+      "projects": []
+    },
+    "leather": {
+      "projects": []
+    }
   }
 }

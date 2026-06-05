@@ -6,7 +6,7 @@ export default async function HomePage() {
   const content = await readContent();
 
   return (
-    <div className="home-scroll">
+    <div className="page-home home-scroll">
       <LandingSection bio={content.bio} />
       <CategoryHub />
     </div>

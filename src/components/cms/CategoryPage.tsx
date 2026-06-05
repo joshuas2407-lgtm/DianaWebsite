@@ -27,7 +27,9 @@ export function CategoryPageClient({
   }, [initialProjects]);
 
   const refresh = useCallback(async () => {
-    const res = await fetch(`/api/projects/${category}`);
+    const res = await fetch(`/api/projects/${category}`, {
+      credentials: "include",
+    });
     const data = (await res.json()) as { projects: Project[] };
     setProjects(data.projects);
   }, [category]);
@@ -36,6 +38,7 @@ export function CategoryPageClient({
     await fetch(`/api/projects/${category}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
+      credentials: "include",
       body: JSON.stringify({
         title: "New project",
         date: new Date().toISOString().slice(0, 10),
@@ -47,7 +50,7 @@ export function CategoryPageClient({
   };
 
   return (
-    <div className="category-page">
+    <div className={`page-category page-category--${category} category-page`}>
       <header className="category-page__header">
         <Link href="/" className="category-page__back">
           ← Home

@@ -24,7 +24,7 @@ export function OwnerBar() {
   };
 
   return (
-    <div className="owner-bar">
+    <div className={`owner-bar${isOwner ? " owner-bar--editing" : ""}`}>
       {isOwner ? (
         <div className="owner-bar__inner">
           <span className="owner-bar__label">Editing mode</span>

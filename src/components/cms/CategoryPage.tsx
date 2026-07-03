@@ -51,7 +51,9 @@ export function CategoryPageClient({
 
   return (
     <div className={`page-category page-category--${category} category-page`}>
-      <header className="category-page__header">
+      <header
+        className={`category-page__header${!isOwner ? " category-page__header--viewer" : ""}`}
+      >
         <Link href="/" className="category-page__back">
           ← Home
         </Link>

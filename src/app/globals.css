@@ -22,6 +22,12 @@ body {
   z-index: 100;
 }
 
+.owner-bar--editing {
+  top: auto;
+  bottom: 1rem;
+  right: 1rem;
+}
+
 .owner-bar__sign-in {
   width: 2rem;
   height: 2rem;
@@ -316,6 +322,7 @@ body {
 .page-category {
   min-height: 100dvh;
   font-family: var(--page-font);
+  border: 1cm solid #ffffff;
 }
 
 .page-category .category-page {
@@ -352,6 +359,32 @@ body {
   font-weight: var(--page-title-weight, 500);
   letter-spacing: var(--page-title-tracking, 0.05em);
   text-transform: var(--page-title-case, uppercase);
+}
+
+.page-category .category-page__header--viewer {
+  position: relative;
+  justify-content: center;
+}
+
+.page-category .category-page__header--viewer .category-page__back {
+  position: absolute;
+  left: 0;
+  margin-right: 0;
+}
+
+.page-category .category-page__header--viewer h1 {
+  width: 100%;
+  text-align: center;
+}
+
+.page-category--leather .category-page__header--viewer {
+  flex-direction: row;
+  align-items: center;
+}
+
+.page-category--photography .category-page__header--viewer h1 {
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .page-category .category-page__add {

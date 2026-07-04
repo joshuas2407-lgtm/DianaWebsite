@@ -1,21 +1,25 @@
 {
-  "bio": "I am diana",
+  "bio": "Hello, my name is diana\n",
   "categories": {
     "architecture": {
       "projects": [
         {
-          "title": "New project",
+          "title": "My Random Photo",
           "date": "2026-06-05",
-          "text": "",
-          "images": [],
-          "id": "a706a428-458c-4e02-ae71-a5a7099b7914"
+          "text": "It is a random building i found on the internet\n",
+          "images": [
+            "/uploads/eff2df1e-9fff-4cd7-ae3b-b6e62a3a6518.jpg"
+          ],
+          "id": "c755801f-7b78-4436-b933-d6d7c6809037"
         },
         {
-          "title": "New project",
-          "date": "2026-06-05",
-          "text": "",
-          "images": [],
-          "id": "c755801f-7b78-4436-b933-d6d7c6809037"
+          "title": "Another random photo",
+          "date": "2026-07-03",
+          "text": "Another random building",
+          "images": [
+            "/uploads/8d81b423-e121-420c-9f60-a93284774e9e.jpg"
+          ],
+          "id": "043ae81f-4ef1-4fd2-8d4c-fe8a2126d931"
         }
       ]
     },

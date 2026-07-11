@@ -10,6 +10,7 @@ export interface Project {
   date: string;
   text: string;
   images: string[];
+  column?: number;
 }
 
 export interface SiteContent {
@@ -30,6 +31,15 @@ export const CATEGORY_LABELS: Record<CategorySlug, string> = {
   photography: "Photography",
   leather: "Leather",
 };
+
+export const CATEGORY_PAGE_TITLES: Record<CategorySlug, string> = {
+  architecture: "Portfolio",
+  art: "Art",
+  photography: "Photography",
+  leather: "Leather",
+};
+
+export const ARCHITECTURE_COLUMNS = 3;
 
 export const DEFAULT_CONTENT: SiteContent = {
   bio: "Welcome. Add a short introduction about yourself here.",

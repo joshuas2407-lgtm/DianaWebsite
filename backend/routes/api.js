@@ -131,8 +131,8 @@ apiRouter.post("/projects/:category", requireOwner, async (req, res, next) => {
       return;
     }
 
-    const { title, date, text, images } = req.body ?? {};
-    const content = await addProject(category, {
+    const { title, date, text, images, column } = req.body ?? {};
+    const project = {
       title: typeof title === "string" ? title : "New project",
       date:
         typeof date === "string"
@@ -140,7 +140,13 @@ apiRouter.post("/projects/:category", requireOwner, async (req, res, next) => {
           : new Date().toISOString().slice(0, 10),
       text: typeof text === "string" ? text : "",
       images: Array.isArray(images) ? images.filter((i) => typeof i === "string") : [],
-    });
+    };
+
+    if (typeof column === "number" && column >= 0 && column <= 2) {
+      project.column = column;
+    }
+
+    const content = await addProject(category, project);
     res.json({ projects: content.categories[category].projects });
   } catch (err) {
     next(err);

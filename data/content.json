@@ -13,13 +13,41 @@
           "id": "c755801f-7b78-4436-b933-d6d7c6809037"
         },
         {
-          "title": "Another random photo",
-          "date": "2026-07-03",
-          "text": "Another random building",
+          "title": "New project",
+          "date": "2026-07-11",
+          "text": "",
+          "images": [],
+          "id": "627233d8-f12d-4fab-990a-ff5b4f8934f5"
+        },
+        {
+          "title": "New project",
+          "date": "2026-07-11",
+          "text": "",
           "images": [
-            "/uploads/8d81b423-e121-420c-9f60-a93284774e9e.jpg"
+            "/uploads/79c5caa0-2e1c-4b5e-9b6f-9f3a045750f1.jpg"
           ],
-          "id": "043ae81f-4ef1-4fd2-8d4c-fe8a2126d931"
+          "column": 1,
+          "id": "7a037e5d-63f8-4b5d-9816-ec73159e7ee3"
+        },
+        {
+          "title": "New project",
+          "date": "2026-07-11",
+          "text": "",
+          "images": [
+            "/uploads/c2fce17a-dc77-4892-9f9f-bd31fe51e4f3.jpg"
+          ],
+          "column": 2,
+          "id": "e547a83c-5814-4f17-b9c3-879a77304b29"
+        },
+        {
+          "title": "New project",
+          "date": "2026-07-11",
+          "text": "",
+          "images": [
+            "/uploads/a1019193-0484-4d5c-b79f-27fea79f11bd.jpg"
+          ],
+          "column": 2,
+          "id": "0ee6e2bb-cad6-4a20-addc-05a382373a20"
         }
       ]
     },

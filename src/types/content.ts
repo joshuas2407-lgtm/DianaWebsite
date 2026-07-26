@@ -39,7 +39,12 @@ export const CATEGORY_PAGE_TITLES: Record<CategorySlug, string> = {
   leather: "Leather",
 };
 
-export const ARCHITECTURE_COLUMNS = 3;
+export const COLUMN_COUNT = 3;
+
+export const COLUMN_LAYOUT_CATEGORIES: CategorySlug[] = [
+  "architecture",
+  "photography",
+];
 
 export const DEFAULT_CONTENT: SiteContent = {
   bio: "Welcome. Add a short introduction about yourself here.",

@@ -5,7 +5,8 @@ import Link from "next/link";
 import { useOwner } from "@/context/OwnerContext";
 import { ProjectCard } from "@/components/cms/ProjectCard";
 import {
-  ARCHITECTURE_COLUMNS,
+  COLUMN_COUNT,
+  COLUMN_LAYOUT_CATEGORIES,
   CATEGORY_PAGE_TITLES,
   type CategorySlug,
   type Project,
@@ -26,7 +27,7 @@ export function CategoryPageClient({
 }: CategoryPageProps) {
   const { isOwner } = useOwner();
   const [projects, setProjects] = useState(initialProjects);
-  const isArchitecture = category === "architecture";
+  const usesColumnLayout = COLUMN_LAYOUT_CATEGORIES.includes(category);
 
   useEffect(() => {
     setProjects(initialProjects);
@@ -60,7 +61,9 @@ export function CategoryPageClient({
     projects.filter((project) => projectColumn(project) === column);
 
   return (
-    <div className={`page-category page-category--${category} category-page`}>
+    <div
+      className={`page-category page-category--${category} category-page${usesColumnLayout ? " category-page--columns" : ""}`}
+    >
       <header
         className={`category-page__header${!isOwner ? " category-page__header--viewer" : ""}`}
       >
@@ -68,7 +71,7 @@ export function CategoryPageClient({
           ← Home
         </Link>
         <h1>{CATEGORY_PAGE_TITLES[category]}</h1>
-        {isOwner && !isArchitecture && (
+        {isOwner && !usesColumnLayout && (
           <button
             type="button"
             className="category-page__add"
@@ -81,17 +84,17 @@ export function CategoryPageClient({
       </header>
 
       <main className="category-page__main">
-        {isArchitecture ? (
+        {usesColumnLayout ? (
           <>
             {projects.length === 0 && !isOwner && (
               <p className="category-page__empty">Projects coming soon.</p>
             )}
             <div className="category-page__columns">
-              {Array.from({ length: ARCHITECTURE_COLUMNS }, (_, column) => (
+              {Array.from({ length: COLUMN_COUNT }, (_, column) => (
                 <section
                   key={column}
                   className="category-page__column"
-                  aria-label={`Portfolio column ${column + 1}`}
+                  aria-label={`${CATEGORY_PAGE_TITLES[category]} column ${column + 1}`}
                 >
                   {isOwner && (
                     <button
@@ -123,10 +126,10 @@ export function CategoryPageClient({
                     ))}
                   </div>
                   {isOwner && columnProjects(column).length === 0 && (
-                      <p className="category-page__empty category-page__empty--column">
-                        Click + to add a project
-                      </p>
-                    )}
+                    <p className="category-page__empty category-page__empty--column">
+                      Click + to add a project
+                    </p>
+                  )}
                 </section>
               ))}
             </div>

@@ -52,10 +52,70 @@
       ]
     },
     "art": {
-      "projects": []
+      "projects": [
+        {
+          "title": "New project",
+          "date": "2026-07-25",
+          "text": "",
+          "images": [
+            "/uploads/b2f17a06-4856-4905-8280-76fe12964e89.jpg"
+          ],
+          "id": "1c2257ab-0815-4c46-90ac-7856bf0f9912"
+        },
+        {
+          "title": "New project",
+          "date": "2026-07-25",
+          "text": "",
+          "images": [
+            "/uploads/84713523-b04d-4e3a-8c28-921007327492.jpg"
+          ],
+          "id": "834e2f41-fa55-4ce6-9378-3663e4459b2e"
+        },
+        {
+          "title": "New project",
+          "date": "2026-07-25",
+          "text": "",
+          "images": [
+            "/uploads/1829d724-75d6-4286-9a53-227b1fe80bb3.jpg"
+          ],
+          "id": "f37f1602-91f4-4558-9323-e0ad7dc787d1"
+        }
+      ]
     },
     "photography": {
-      "projects": []
+      "projects": [
+        {
+          "title": "pic 3",
+          "date": "2026-07-25",
+          "text": "woman",
+          "images": [
+            "/uploads/1931cc2c-c606-4b25-ae2e-871d2692ab54.jpg",
+            "/uploads/e7f8abe9-f027-42ae-93a2-4c5a17c7b9ca.jpg"
+          ],
+          "column": 1,
+          "id": "ce2231be-c373-4ad5-a484-4a6259d82e8a"
+        },
+        {
+          "title": "New project",
+          "date": "2026-07-25",
+          "text": "tree",
+          "images": [
+            "/uploads/62e4bfd9-0526-4a91-89ea-9cc9e99036fb.jpg"
+          ],
+          "column": 2,
+          "id": "dc5d45ca-3937-4555-b3d1-cdfab1d16a48"
+        },
+        {
+          "title": "Random pic 1",
+          "date": "2026-07-25",
+          "text": "mountain",
+          "images": [
+            "/uploads/2f4e89d6-7ce8-428c-8928-c958924f56e4.webp"
+          ],
+          "column": 0,
+          "id": "17f42c3a-b484-432a-95ca-8a9eef34407e"
+        }
+      ]
     },
     "leather": {
       "projects": []

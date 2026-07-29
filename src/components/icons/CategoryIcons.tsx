@@ -14,7 +14,7 @@ export function HouseIcon({ className }: { className?: string }) {
   );
 }
 
-export function EaselIcon({ className }: { className?: string }) {
+export function PaletteBrushIcon({ className }: { className?: string }) {
   return (
     <svg
       className={className}
@@ -22,12 +22,21 @@ export function EaselIcon({ className }: { className?: string }) {
       fill="none"
       stroke="currentColor"
       strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       aria-hidden
     >
-      <path d="M20 54 L32 14 L44 54" />
-      <path d="M14 54 H50" />
-      <rect x="22" y="22" width="20" height="16" rx="1" />
-      <path d="M48 30 L58 26 L54 38" />
+      {/* Palette */}
+      <path d="M10 38 C10 22 26 14 38 18 C50 22 52 36 42 46 C32 54 16 50 10 38 Z" />
+      <circle cx="20" cy="34" r="3.5" />
+      <circle cx="34" cy="26" r="2" />
+      <circle cx="42" cy="32" r="2" />
+      <circle cx="38" cy="40" r="2" />
+      {/* Paintbrush */}
+      <path d="M44 18 L58 8" strokeWidth="2.5" />
+      <path d="M58 8 L62 12" />
+      <path d="M58 8 L54 13" />
+      <path d="M58 8 L61 6" />
     </svg>
   );
 }

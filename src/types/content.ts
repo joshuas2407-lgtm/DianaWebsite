@@ -13,9 +13,14 @@ export interface Project {
   column?: number;
 }
 
+export interface CategoryData {
+  projects: Project[];
+  columnCount?: number;
+}
+
 export interface SiteContent {
   bio: string;
-  categories: Record<CategorySlug, { projects: Project[] }>;
+  categories: Record<CategorySlug, CategoryData>;
 }
 
 export const CATEGORY_SLUGS: CategorySlug[] = [
@@ -39,12 +44,47 @@ export const CATEGORY_PAGE_TITLES: Record<CategorySlug, string> = {
   leather: "Leather",
 };
 
-export const COLUMN_COUNT = 3;
+export const FIXED_COLUMN_COUNT = 3;
 
-export const COLUMN_LAYOUT_CATEGORIES: CategorySlug[] = [
+export const FIXED_COLUMN_CATEGORIES: CategorySlug[] = [
   "architecture",
   "photography",
 ];
+
+export const EXPANDABLE_COLUMN_CATEGORIES: CategorySlug[] = ["art"];
+
+export const ART_DEFAULT_COLUMN_COUNT = 1;
+
+export function resolveColumnCount(
+  category: CategorySlug,
+  projects: Project[],
+  storedCount?: number
+): number {
+  if (EXPANDABLE_COLUMN_CATEGORIES.includes(category)) {
+    const fromProjects = projects.reduce(
+      (max, project) => Math.max(max, (project.column ?? 0) + 1),
+      0
+    );
+    return Math.max(
+      storedCount ?? ART_DEFAULT_COLUMN_COUNT,
+      fromProjects,
+      ART_DEFAULT_COLUMN_COUNT
+    );
+  }
+
+  if (FIXED_COLUMN_CATEGORIES.includes(category)) {
+    return FIXED_COLUMN_COUNT;
+  }
+
+  return 0;
+}
+
+export function usesColumnLayout(category: CategorySlug): boolean {
+  return (
+    FIXED_COLUMN_CATEGORIES.includes(category) ||
+    EXPANDABLE_COLUMN_CATEGORIES.includes(category)
+  );
+}
 
 export const DEFAULT_CONTENT: SiteContent = {
   bio: "Welcome. Add a short introduction about yourself here.",

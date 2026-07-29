@@ -88,3 +88,27 @@ export async function deleteProject(category, projectId) {
   await writeContent(content);
   return content;
 }
+
+export function resolveCategoryColumnCount(category, categoryData) {
+  const projects = categoryData.projects ?? [];
+  if (category === "art") {
+    const fromProjects = projects.reduce(
+      (max, project) => Math.max(max, (project.column ?? 0) + 1),
+      0
+    );
+    return Math.max(categoryData.columnCount ?? 1, fromProjects, 1);
+  }
+  return undefined;
+}
+
+export async function addCategoryColumn(category) {
+  if (category !== "art") {
+    throw new Error("Only art supports expandable columns");
+  }
+  const content = await readContent();
+  const categoryData = content.categories[category];
+  const current = resolveCategoryColumnCount(category, categoryData);
+  categoryData.columnCount = current + 1;
+  await writeContent(content);
+  return content;
+}

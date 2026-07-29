@@ -51,47 +51,120 @@ export function ProjectCard({
     onDelete();
   };
 
+  const isLeather = category === "leather";
+
   return (
     <article className="project-card">
       {isOwner ? (
+        isLeather ? (
+          <>
+            <div className="project-card__copy">
+              <div className="project-card__fields">
+                <input
+                  className="project-card__title-input"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  onBlur={() => void persist({ title })}
+                  placeholder="Project title"
+                />
+                <input
+                  type="date"
+                  className="project-card__date-input"
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                  onBlur={() => void persist({ date })}
+                />
+              </div>
+              <textarea
+                className="project-card__text-input"
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                onBlur={() => void persist({ text })}
+                placeholder="Describe this project…"
+                rows={8}
+              />
+            </div>
+            <div className="project-card__media">
+              <ImageDropzone
+                images={images}
+                onChange={(next) => {
+                  setImages(next);
+                  void persist({ images: next });
+                }}
+              />
+            </div>
+            <div className="project-card__owner-actions">
+              {saving && <span>Saving…</span>}
+              <button type="button" onClick={() => void handleDelete()}>
+                Delete project
+              </button>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="project-card__fields">
+              <input
+                className="project-card__title-input"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                onBlur={() => void persist({ title })}
+                placeholder="Project title"
+              />
+              <input
+                type="date"
+                className="project-card__date-input"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+                onBlur={() => void persist({ date })}
+              />
+            </div>
+            <textarea
+              className="project-card__text-input"
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              onBlur={() => void persist({ text })}
+              placeholder="Describe this project…"
+              rows={4}
+            />
+            <ImageDropzone
+              images={images}
+              onChange={(next) => {
+                setImages(next);
+                void persist({ images: next });
+              }}
+            />
+            <div className="project-card__owner-actions">
+              {saving && <span>Saving…</span>}
+              <button type="button" onClick={() => void handleDelete()}>
+                Delete project
+              </button>
+            </div>
+          </>
+        )
+      ) : isLeather ? (
         <>
-          <div className="project-card__fields">
-            <input
-              className="project-card__title-input"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              onBlur={() => void persist({ title })}
-              placeholder="Project title"
-            />
-            <input
-              type="date"
-              className="project-card__date-input"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-              onBlur={() => void persist({ date })}
-            />
+          <div className="project-card__copy">
+            <header className="project-card__header">
+              <h2>{project.title}</h2>
+              <time dateTime={project.date}>{formatDate(project.date)}</time>
+            </header>
+            {project.text && <p className="project-card__text">{project.text}</p>}
           </div>
-          <textarea
-            className="project-card__text-input"
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            onBlur={() => void persist({ text })}
-            placeholder="Describe this project…"
-            rows={4}
-          />
-          <ImageDropzone
-            images={images}
-            onChange={(next) => {
-              setImages(next);
-              void persist({ images: next });
-            }}
-          />
-          <div className="project-card__owner-actions">
-            {saving && <span>Saving…</span>}
-            <button type="button" onClick={() => void handleDelete()}>
-              Delete project
-            </button>
-          </div>
+          {project.images.length > 0 && (
+            <div className="project-card__gallery">
+              {project.images.map((src) => (
+                <div key={src} className="project-card__image-wrap">
+                  <Image
+                    src={src}
+                    alt=""
+                    fill
+                    sizes="(max-width:768px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          )}
         </>
       ) : (
         <>

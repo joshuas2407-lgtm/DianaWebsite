@@ -13,8 +13,10 @@ import {
 } from "../lib/auth.js";
 import {
   addProject,
+  addCategoryColumn,
   deleteProject,
   readContent,
+  resolveCategoryColumnCount,
   updateBio,
   updateProject,
 } from "../lib/content.js";
@@ -117,7 +119,11 @@ apiRouter.get("/projects/:category", async (req, res, next) => {
       return;
     }
     const content = await readContent();
-    res.json({ projects: content.categories[category].projects });
+    const categoryData = content.categories[category];
+    res.json({
+      projects: categoryData.projects,
+      columnCount: resolveCategoryColumnCount(category, categoryData),
+    });
   } catch (err) {
     next(err);
   }
@@ -142,12 +148,20 @@ apiRouter.post("/projects/:category", requireOwner, async (req, res, next) => {
       images: Array.isArray(images) ? images.filter((i) => typeof i === "string") : [],
     };
 
-    if (typeof column === "number" && column >= 0 && column <= 2) {
-      project.column = column;
+    if (typeof column === "number" && column >= 0) {
+      if (category === "art") {
+        project.column = column;
+      } else if (column <= 2) {
+        project.column = column;
+      }
     }
 
     const content = await addProject(category, project);
-    res.json({ projects: content.categories[category].projects });
+    const categoryData = content.categories[category];
+    res.json({
+      projects: categoryData.projects,
+      columnCount: resolveCategoryColumnCount(category, categoryData),
+    });
   } catch (err) {
     next(err);
   }
@@ -168,7 +182,11 @@ apiRouter.patch("/projects/:category", requireOwner, async (req, res, next) => {
     }
 
     const content = await updateProject(category, projectId, updates);
-    res.json({ projects: content.categories[category].projects });
+    const categoryData = content.categories[category];
+    res.json({
+      projects: categoryData.projects,
+      columnCount: resolveCategoryColumnCount(category, categoryData),
+    });
   } catch (err) {
     if (err instanceof Error && err.message === "Project not found") {
       res.status(404).json({ error: "Project not found" });
@@ -193,7 +211,30 @@ apiRouter.delete("/projects/:category", requireOwner, async (req, res, next) => 
     }
 
     const content = await deleteProject(category, projectId);
-    res.json({ projects: content.categories[category].projects });
+    const categoryData = content.categories[category];
+    res.json({
+      projects: categoryData.projects,
+      columnCount: resolveCategoryColumnCount(category, categoryData),
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+
+apiRouter.post("/projects/:category/columns", requireOwner, async (req, res, next) => {
+  try {
+    const { category } = req.params;
+    if (category !== "art") {
+      res.status(400).json({ error: "Only art supports expandable columns" });
+      return;
+    }
+
+    const content = await addCategoryColumn(category);
+    const categoryData = content.categories[category];
+    res.json({
+      projects: categoryData.projects,
+      columnCount: resolveCategoryColumnCount(category, categoryData),
+    });
   } catch (err) {
     next(err);
   }

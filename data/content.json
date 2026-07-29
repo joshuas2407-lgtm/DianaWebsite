@@ -67,20 +67,60 @@
           "date": "2026-07-25",
           "text": "",
           "images": [
-            "/uploads/84713523-b04d-4e3a-8c28-921007327492.jpg"
+            "/uploads/8dfd5a43-25de-4b94-88bc-13bcacec3b21.jpg"
           ],
-          "id": "834e2f41-fa55-4ce6-9378-3663e4459b2e"
+          "id": "f37f1602-91f4-4558-9323-e0ad7dc787d1"
         },
         {
           "title": "New project",
-          "date": "2026-07-25",
+          "date": "2026-07-29",
           "text": "",
           "images": [
-            "/uploads/1829d724-75d6-4286-9a53-227b1fe80bb3.jpg"
+            "/uploads/c3278d58-713f-4319-a1d0-9a61fe3ae1c0.jpg"
           ],
-          "id": "f37f1602-91f4-4558-9323-e0ad7dc787d1"
+          "column": 1,
+          "id": "90d814ec-cb4a-4982-89ab-f923ebd6e82c"
+        },
+        {
+          "title": "New project",
+          "date": "2026-07-29",
+          "text": "",
+          "images": [],
+          "column": 1,
+          "id": "3b4b53df-284b-4421-a62a-2a5bc694a44d"
+        },
+        {
+          "title": "New project",
+          "date": "2026-07-29",
+          "text": "",
+          "images": [
+            "/uploads/1f261f5c-b737-49f2-85d5-f205e77ecf90.jpg"
+          ],
+          "column": 2,
+          "id": "ce5879b9-b730-4d49-aef4-96a2310a80b7"
+        },
+        {
+          "title": "New project",
+          "date": "2026-07-29",
+          "text": "",
+          "images": [
+            "/uploads/38fb004e-51dc-47db-aec8-c80c5af726eb.jpg"
+          ],
+          "column": 3,
+          "id": "8da6e159-546f-4b7f-9067-d6f4a294ce85"
+        },
+        {
+          "title": "New project",
+          "date": "2026-07-29",
+          "text": "",
+          "images": [
+            "/uploads/3398a672-2841-4192-8f86-a3dae378c153.jpg"
+          ],
+          "column": 4,
+          "id": "b1c24c16-a8e6-4c06-bee4-9207cea29019"
         }
-      ]
+      ],
+      "columnCount": 5
     },
     "photography": {
       "projects": [
@@ -118,7 +158,35 @@
       ]
     },
     "leather": {
-      "projects": []
+      "projects": [
+        {
+          "title": "Josh",
+          "date": "2026-07-29",
+          "text": "",
+          "images": [
+            "/uploads/06c62529-b5fb-4109-8960-9e8536de30fb.jpg"
+          ],
+          "id": "78d33f0e-dab5-47a6-91a9-849f016d0fe0"
+        },
+        {
+          "title": "D",
+          "date": "2026-07-29",
+          "text": "",
+          "images": [
+            "/uploads/bfe72edb-6108-41f6-993a-685f923e0286.jpg"
+          ],
+          "id": "30d1143c-dcc1-4929-9b2c-389fa308e024"
+        },
+        {
+          "title": "G",
+          "date": "2026-07-29",
+          "text": "",
+          "images": [
+            "/uploads/493f8624-13b4-46e4-84b0-f7508d79db15.jpg"
+          ],
+          "id": "6827e7dc-4a2b-41a6-9cb0-b4f45f15a1ac"
+        }
+      ]
     }
   }
 }

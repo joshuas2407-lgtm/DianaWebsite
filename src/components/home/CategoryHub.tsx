@@ -2,8 +2,8 @@ import Link from "next/link";
 import {
   BagIcon,
   CameraIcon,
-  EaselIcon,
   HouseIcon,
+  PaletteBrushIcon,
 } from "@/components/icons/CategoryIcons";
 import type { CategorySlug } from "@/types/content";
 
@@ -13,7 +13,7 @@ const CATEGORIES: {
   Icon: typeof HouseIcon;
 }[] = [
   { slug: "architecture", label: "Architecture", Icon: HouseIcon },
-  { slug: "art", label: "Art", Icon: EaselIcon },
+  { slug: "art", label: "Art", Icon: PaletteBrushIcon },
   { slug: "photography", label: "Photography", Icon: CameraIcon },
   { slug: "leather", label: "Leather", Icon: BagIcon },
 ];

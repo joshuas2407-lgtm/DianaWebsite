@@ -14,7 +14,7 @@ export function HouseIcon({ className }: { className?: string }) {
   );
 }
 
-export function PaletteBrushIcon({ className }: { className?: string }) {
+export function PaintbrushIcon({ className }: { className?: string }) {
   return (
     <svg
       className={className}
@@ -26,17 +26,12 @@ export function PaletteBrushIcon({ className }: { className?: string }) {
       strokeLinejoin="round"
       aria-hidden
     >
-      {/* Palette */}
-      <path d="M10 38 C10 22 26 14 38 18 C50 22 52 36 42 46 C32 54 16 50 10 38 Z" />
-      <circle cx="20" cy="34" r="3.5" />
-      <circle cx="34" cy="26" r="2" />
-      <circle cx="42" cy="32" r="2" />
-      <circle cx="38" cy="40" r="2" />
-      {/* Paintbrush */}
-      <path d="M44 18 L58 8" strokeWidth="2.5" />
-      <path d="M58 8 L62 12" />
-      <path d="M58 8 L54 13" />
-      <path d="M58 8 L61 6" />
+      <rect x="28" y="8" width="8" height="18" />
+      <rect x="18" y="26" width="28" height="8" rx="2" />
+      <path d="M18 37 V54 H46 V37 Q46 34 43 34 H21 Q18 34 18 37 Z" />
+      <line x1="24" y1="44" x2="24" y2="54" />
+      <line x1="32" y1="44" x2="32" y2="54" />
+      <line x1="40" y1="44" x2="40" y2="54" />
     </svg>
   );
 }

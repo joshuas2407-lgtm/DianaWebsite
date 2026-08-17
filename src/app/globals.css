@@ -163,7 +163,15 @@ body {
   justify-content: flex-start;
   min-height: 100dvh;
   padding: clamp(2rem, 5vw, 3.5rem);
-  background: #000000;
+  background: linear-gradient(
+    to bottom,
+    #000000 0%,
+    #000000 72%,
+    #3d3d3d 82%,
+    #9a9a9a 90%,
+    #d8d8d8 96%,
+    #f5f5f5 100%
+  );
 }
 
 .page-home .landing__hey {
@@ -180,10 +188,10 @@ body {
   width: min(36rem, 100%);
   min-height: 11rem;
   padding: 1.5rem 1.75rem;
-  background: #ffffff;
-  border: none;
+  background: #000000;
+  border: 1px solid #000000;
   border-radius: 0;
-  color: #111111;
+  color: #ffffff;
 }
 
 .page-home .bio-panel__placeholder {
@@ -192,9 +200,11 @@ body {
 
 .page-home .bio-panel__text {
   margin: 0;
-  font-size: 1.05rem;
+  font-family: "Segoe Script", "Brush Script MT", "Apple Chancery", cursive;
+  font-size: 1.15rem;
   line-height: 1.6;
   white-space: pre-wrap;
+  color: #ffffff;
 }
 
 .page-home .bio-panel__edit {
@@ -207,23 +217,23 @@ body {
   min-height: 8rem;
   border: none;
   background: transparent;
-  color: #111111;
-  font-family: inherit;
-  font-size: 1.05rem;
+  color: #ffffff;
+  font-family: "Segoe Script", "Brush Script MT", "Apple Chancery", cursive;
+  font-size: 1.15rem;
   line-height: 1.6;
   resize: vertical;
   outline: none;
 }
 
 .page-home .bio-panel__edit textarea::placeholder {
-  color: #a3a3a3;
+  color: #737373;
 }
 
 .page-home .bio-panel__saving {
   display: block;
   margin-top: 0.5rem;
   font-size: 0.75rem;
-  color: #666;
+  color: #a3a3a3;
 }
 
 .page-home .landing__scroll-hint {
@@ -322,7 +332,7 @@ body {
 .page-category {
   min-height: 100dvh;
   font-family: var(--page-font);
-  border: 1cm solid #ffffff;
+  border: 5mm solid var(--page-bg, #f4f3ef);
 }
 
 .page-category .category-page {

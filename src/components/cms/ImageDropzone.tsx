@@ -7,12 +7,14 @@ interface ImageDropzoneProps {
   images: string[];
   onChange: (images: string[]) => void;
   disabled?: boolean;
+  naturalAspect?: boolean;
 }
 
 export function ImageDropzone({
   images,
   onChange,
   disabled = false,
+  naturalAspect = false,
 }: ImageDropzoneProps) {
   const [uploading, setUploading] = useState(false);
   const [dragOver, setDragOver] = useState(false);
@@ -78,23 +80,62 @@ export function ImageDropzone({
         </div>
       )}
       {images.length > 0 && (
-        <div className="image-dropzone__grid">
+        <div
+          className={`image-dropzone__grid${naturalAspect ? " image-dropzone__grid--natural" : ""}`}
+        >
           {images.map((src, i) => (
-            <div key={src} className="image-dropzone__thumb">
-              <Image src={src} alt="" fill sizes="200px" className="object-cover" />
-              {!disabled && (
-                <button
-                  type="button"
-                  className="image-dropzone__remove"
-                  onClick={() => removeImage(i)}
-                  aria-label="Remove image"
-                >
-                  ×
-                </button>
-              )}
-            </div>
+            <NaturalAspectThumb
+              key={src}
+              src={src}
+              naturalAspect={naturalAspect}
+              onRemove={!disabled ? () => removeImage(i) : undefined}
+            />
           ))}
         </div>
+      )}
+    </div>
+  );
+}
+
+function NaturalAspectThumb({
+  src,
+  naturalAspect,
+  onRemove,
+}: {
+  src: string;
+  naturalAspect: boolean;
+  onRemove?: () => void;
+}) {
+  const [aspectRatio, setAspectRatio] = useState<number | null>(null);
+
+  return (
+    <div
+      className={`image-dropzone__thumb${naturalAspect ? " image-dropzone__thumb--natural" : ""}`}
+      style={naturalAspect && aspectRatio ? { aspectRatio: `${aspectRatio}` } : undefined}
+    >
+      <Image
+        src={src}
+        alt=""
+        fill
+        sizes="200px"
+        className={naturalAspect ? "object-contain" : "object-cover"}
+        onLoad={(event) => {
+          if (!naturalAspect) return;
+          const img = event.currentTarget;
+          if (img.naturalWidth > 0 && img.naturalHeight > 0) {
+            setAspectRatio(img.naturalWidth / img.naturalHeight);
+          }
+        }}
+      />
+      {onRemove && (
+        <button
+          type="button"
+          className="image-dropzone__remove"
+          onClick={onRemove}
+          aria-label="Remove image"
+        >
+          ×
+        </button>
       )}
     </div>
   );

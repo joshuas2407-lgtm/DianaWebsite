@@ -54,9 +54,9 @@
     "art": {
       "projects": [
         {
-          "title": "New project",
+          "title": "My art",
           "date": "2026-07-25",
-          "text": "",
+          "text": "These are some small paintings",
           "images": [
             "/uploads/b2f17a06-4856-4905-8280-76fe12964e89.jpg"
           ],
@@ -79,13 +79,16 @@
             "/uploads/c3278d58-713f-4319-a1d0-9a61fe3ae1c0.jpg"
           ],
           "column": 1,
-          "id": "90d814ec-cb4a-4982-89ab-f923ebd6e82c"
+          "id": "90d814ec-cb4a-4982-89ab-f923ebd6e82c",
+          "frameStyle": "gold"
         },
         {
           "title": "New project",
           "date": "2026-07-29",
           "text": "",
-          "images": [],
+          "images": [
+            "/uploads/a6b454ec-0b4e-4be8-a0ea-1aa9a22f5d87.jpg"
+          ],
           "column": 1,
           "id": "3b4b53df-284b-4421-a62a-2a5bc694a44d"
         },
@@ -148,7 +151,7 @@
         {
           "title": "Random pic 1",
           "date": "2026-07-25",
-          "text": "mountain",
+          "text": "mountainrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
           "images": [
             "/uploads/2f4e89d6-7ce8-428c-8928-c958924f56e4.webp"
           ],

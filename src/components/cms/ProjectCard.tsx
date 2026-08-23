@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { useOwner } from "@/context/OwnerContext";
 import { ImageDropzone } from "@/components/cms/ImageDropzone";
+import { ArtProjectImage } from "@/components/cms/ArtProjectImage";
 import type { CategorySlug, Project } from "@/types/content";
 
 interface ProjectCardProps {
@@ -28,11 +29,15 @@ export function ProjectCard({
 
   const persist = async (updates: Partial<Project>) => {
     setSaving(true);
+    const payload =
+      typeof project.column === "number"
+        ? { projectId: project.id, column: project.column, ...updates }
+        : { projectId: project.id, ...updates };
     const res = await fetch(`/api/projects/${category}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
-      body: JSON.stringify({ projectId: project.id, ...updates }),
+      body: JSON.stringify(payload),
     });
     if (res.ok) {
       const data = (await res.json()) as { projects: Project[] };
@@ -52,6 +57,7 @@ export function ProjectCard({
   };
 
   const isLeather = category === "leather";
+  const isArt = category === "art";
 
   return (
     <article className="project-card">
@@ -128,6 +134,7 @@ export function ProjectCard({
             />
             <ImageDropzone
               images={images}
+              naturalAspect={isArt}
               onChange={(next) => {
                 setImages(next);
                 void persist({ images: next });
@@ -162,6 +169,21 @@ export function ProjectCard({
                     className="object-cover"
                   />
                 </div>
+              ))}
+            </div>
+          )}
+        </>
+      ) : isArt ? (
+        <>
+          <header className="project-card__header">
+            <h2>{project.title}</h2>
+            <time dateTime={project.date}>{formatDate(project.date)}</time>
+          </header>
+          <p className="project-card__text">{project.text}</p>
+          {project.images.length > 0 && (
+            <div className="project-card__gallery">
+              {project.images.map((src) => (
+                <ArtProjectImage key={src} src={src} />
               ))}
             </div>
           )}

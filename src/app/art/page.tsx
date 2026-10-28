@@ -2,6 +2,9 @@ import { readContent } from "@/lib/content";
 import { CategoryPageClient } from "@/components/cms/CategoryPage";
 import { resolveColumnCount } from "@/types/content";
 
+// Render on every request so edits show up right away.
+export const dynamic = "force-dynamic";
+
 export default async function ArtPage() {
   const content = await readContent();
   const art = content.categories.art;

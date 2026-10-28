@@ -1,5 +1,5 @@
 {
-  "bio": "Hello, my name is diana\n",
+  "bio": "This is Diana's Portfolio\n",
   "categories": {
     "architecture": {
       "projects": [
@@ -8,7 +8,7 @@
           "date": "2026-06-05",
           "text": "It is a random building i found on the internet\n",
           "images": [
-            "/uploads/eff2df1e-9fff-4cd7-ae3b-b6e62a3a6518.jpg"
+            "/uploads/c9affecd-12d3-4fd6-bab3-d934da203a4d.jpg"
           ],
           "id": "c755801f-7b78-4436-b933-d6d7c6809037"
         },
@@ -24,7 +24,7 @@
           "date": "2026-07-11",
           "text": "",
           "images": [
-            "/uploads/79c5caa0-2e1c-4b5e-9b6f-9f3a045750f1.jpg"
+            "/uploads/bbc577fa-4973-4e54-bf5a-d5d0c74f11a9.jpg"
           ],
           "column": 1,
           "id": "7a037e5d-63f8-4b5d-9816-ec73159e7ee3"
@@ -34,7 +34,7 @@
           "date": "2026-07-11",
           "text": "",
           "images": [
-            "/uploads/c2fce17a-dc77-4892-9f9f-bd31fe51e4f3.jpg"
+            "/uploads/dce48261-0214-4e5a-aa59-9a23b5d8d5b3.webp"
           ],
           "column": 2,
           "id": "e547a83c-5814-4f17-b9c3-879a77304b29"
@@ -44,7 +44,7 @@
           "date": "2026-07-11",
           "text": "",
           "images": [
-            "/uploads/a1019193-0484-4d5c-b79f-27fea79f11bd.jpg"
+            "/uploads/c9537940-0707-4f19-b315-38a4670b6038.png"
           ],
           "column": 2,
           "id": "0ee6e2bb-cad6-4a20-addc-05a382373a20"
@@ -57,27 +57,21 @@
           "title": "My art",
           "date": "2026-07-25",
           "text": "These are some small paintings",
-          "images": [
-            "/uploads/b2f17a06-4856-4905-8280-76fe12964e89.jpg"
-          ],
+          "images": [],
           "id": "1c2257ab-0815-4c46-90ac-7856bf0f9912"
         },
         {
           "title": "New project",
           "date": "2026-07-25",
           "text": "",
-          "images": [
-            "/uploads/8dfd5a43-25de-4b94-88bc-13bcacec3b21.jpg"
-          ],
+          "images": [],
           "id": "f37f1602-91f4-4558-9323-e0ad7dc787d1"
         },
         {
           "title": "New project",
           "date": "2026-07-29",
           "text": "",
-          "images": [
-            "/uploads/c3278d58-713f-4319-a1d0-9a61fe3ae1c0.jpg"
-          ],
+          "images": [],
           "column": 1,
           "id": "90d814ec-cb4a-4982-89ab-f923ebd6e82c",
           "frameStyle": "gold"
@@ -86,9 +80,7 @@
           "title": "New project",
           "date": "2026-07-29",
           "text": "",
-          "images": [
-            "/uploads/a6b454ec-0b4e-4be8-a0ea-1aa9a22f5d87.jpg"
-          ],
+          "images": [],
           "column": 1,
           "id": "3b4b53df-284b-4421-a62a-2a5bc694a44d"
         },
@@ -96,9 +88,7 @@
           "title": "New project",
           "date": "2026-07-29",
           "text": "",
-          "images": [
-            "/uploads/1f261f5c-b737-49f2-85d5-f205e77ecf90.jpg"
-          ],
+          "images": [],
           "column": 2,
           "id": "ce5879b9-b730-4d49-aef4-96a2310a80b7"
         },
@@ -106,9 +96,7 @@
           "title": "New project",
           "date": "2026-07-29",
           "text": "",
-          "images": [
-            "/uploads/38fb004e-51dc-47db-aec8-c80c5af726eb.jpg"
-          ],
+          "images": [],
           "column": 3,
           "id": "8da6e159-546f-4b7f-9067-d6f4a294ce85"
         },
@@ -131,10 +119,7 @@
           "title": "pic 3",
           "date": "2026-07-25",
           "text": "woman",
-          "images": [
-            "/uploads/1931cc2c-c606-4b25-ae2e-871d2692ab54.jpg",
-            "/uploads/e7f8abe9-f027-42ae-93a2-4c5a17c7b9ca.jpg"
-          ],
+          "images": [],
           "column": 1,
           "id": "ce2231be-c373-4ad5-a484-4a6259d82e8a"
         },
@@ -142,9 +127,7 @@
           "title": "New project",
           "date": "2026-07-25",
           "text": "tree",
-          "images": [
-            "/uploads/62e4bfd9-0526-4a91-89ea-9cc9e99036fb.jpg"
-          ],
+          "images": [],
           "column": 2,
           "id": "dc5d45ca-3937-4555-b3d1-cdfab1d16a48"
         },
@@ -153,7 +136,7 @@
           "date": "2026-07-25",
           "text": "mountainrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
           "images": [
-            "/uploads/2f4e89d6-7ce8-428c-8928-c958924f56e4.webp"
+            "/uploads/5fbb13ca-f5cc-47ad-b4bc-1b071f6bc5af.jpg"
           ],
           "column": 0,
           "id": "17f42c3a-b484-432a-95ca-8a9eef34407e"
@@ -167,7 +150,7 @@
           "date": "2026-07-29",
           "text": "",
           "images": [
-            "/uploads/06c62529-b5fb-4109-8960-9e8536de30fb.jpg"
+            "/uploads/10a7e6a1-beed-43ac-b3bf-4a674aa500a0.webp"
           ],
           "id": "78d33f0e-dab5-47a6-91a9-849f016d0fe0"
         },
@@ -176,16 +159,16 @@
           "date": "2026-07-29",
           "text": "",
           "images": [
-            "/uploads/bfe72edb-6108-41f6-993a-685f923e0286.jpg"
+            "/uploads/d7b1c743-70d6-409c-883d-a19fc03334bc.jpg"
           ],
           "id": "30d1143c-dcc1-4929-9b2c-389fa308e024"
         },
         {
           "title": "G",
           "date": "2026-07-29",
-          "text": "",
+          "text": "art frame",
           "images": [
-            "/uploads/493f8624-13b4-46e4-84b0-f7508d79db15.jpg"
+            "/uploads/81aba948-d2aa-4449-93e4-a9bda7236d71.png"
           ],
           "id": "6827e7dc-4a2b-41a6-9cb0-b4f45f15a1ac"
         }

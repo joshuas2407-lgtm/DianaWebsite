@@ -11,7 +11,7 @@ A sleek personal portfolio with an owner-only content management system. The own
 
 ## Backend
 
-The site uses a **Node.js + Express** API (`backend/`) served together with the Next.js frontend via `server.js` on a single port.
+The API lives in Next.js route handlers under `src/app/api/`, so the whole site runs on Vercel (or with `next dev` locally).
 
 | API route | Auth | Purpose |
 |-----------|------|---------|
@@ -24,12 +24,13 @@ The site uses a **Node.js + Express** API (`backend/`) served together with the 
 | `POST /api/projects/:category` | Owner | Create project |
 | `PATCH /api/projects/:category` | Owner | Edit project |
 | `DELETE /api/projects/:category` | Owner | Delete project |
+| `POST /api/projects/art/columns` | Owner | Add an art column |
 | `POST /api/upload` | Owner | Upload images |
 
-**Persistence** (saved on disk):
+**Where edits are saved** (`src/lib/storage.ts`):
 
-- `data/content.json` — introduction text and all project data
-- `public/uploads/` — uploaded images
+- **Deployed (Vercel)**: [Vercel Blob](https://vercel.com/docs/vercel-blob). Used whenever `BLOB_READ_WRITE_TOKEN` is set. Content is `content.json` in the Blob store; images go under `uploads/`.
+- **Local, no Blob token**: `data/content.json` and `public/uploads/` on disk.
 
 ## Getting started
 
@@ -77,21 +78,20 @@ The site uses a **Node.js + Express** API (`backend/`) served together with the 
 ## Project structure
 
 ```
-backend/
-  lib/          # Auth, content storage, category helpers
-  routes/       # Express API routes
-data/
-  content.json  # Site text and project data
-public/uploads/ # Uploaded images
-server.js       # Express API + Next.js custom server
-src/            # Next.js frontend
+data/content.json      # Local site content (and the starting content before Blob has any)
+public/uploads/        # Locally uploaded images
+scripts/upload-to-blob.mjs  # One-time copy of local content + images into Blob
+src/app/api/           # API route handlers
+src/lib/               # Auth, content and storage helpers
+src/                   # Next.js frontend
 ```
 
-## Production
+## Deploying to Vercel (with editing)
 
-```bash
-npm run build
-NODE_ENV=production npm start
-```
+1. Import the GitHub repo into Vercel (framework: Next.js, default settings).
+2. In the Vercel project, open **Storage → Create → Blob**, create a store and connect it to the project. This adds `BLOB_READ_WRITE_TOKEN` automatically.
+3. In **Settings → Environment Variables**, add `OWNER_PASSWORD` and `OWNER_SESSION_SECRET`.
+4. Redeploy.
+5. Optional, to start the live site with your local content and images: copy `BLOB_READ_WRITE_TOKEN` into `.env.local` (or run `npx vercel env pull .env.local`), then run `npm run upload-to-blob`. Remove the token from `.env.local` afterwards if you want local edits to stay on disk instead of going to the live site.
 
-Set `OWNER_PASSWORD` and `OWNER_SESSION_SECRET` in your hosting environment. Use persistent storage for `data/` and `public/uploads/` if your host resets the filesystem between deploys.
+After that, sign in with the dot in the top-right corner of the live site to edit. Changes are visible to visitors right away, without a redeploy.

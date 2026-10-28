@@ -2,6 +2,31 @@
 
 import { useCallback, useState } from "react";
 import Image from "next/image";
+import { upload } from "@vercel/blob/client";
+import { useOwner, type UploadMode } from "@/context/OwnerContext";
+
+async function uploadImage(file: File, mode: UploadMode): Promise<string> {
+  if (mode === "blob") {
+    const blob = await upload(`uploads/${file.name}`, file, {
+      access: "public",
+      handleUploadUrl: "/api/upload",
+      contentType: file.type,
+      multipart: file.size > 5 * 1024 * 1024,
+    });
+    return blob.url;
+  }
+
+  const formData = new FormData();
+  formData.append("file", file);
+  const res = await fetch("/api/upload", {
+    method: "POST",
+    credentials: "include",
+    body: formData,
+  });
+  if (!res.ok) throw new Error(`Upload failed (${res.status})`);
+  const { url } = (await res.json()) as { url: string };
+  return url;
+}
 
 interface ImageDropzoneProps {
   images: string[];
@@ -16,32 +41,38 @@ export function ImageDropzone({
   disabled = false,
   naturalAspect = false,
 }: ImageDropzoneProps) {
+  const { uploadMode } = useOwner();
   const [uploading, setUploading] = useState(false);
   const [dragOver, setDragOver] = useState(false);
+  const [error, setError] = useState("");
 
   const uploadFiles = useCallback(
     async (files: FileList | File[]) => {
       if (disabled) return;
       setUploading(true);
+      setError("");
       const urls: string[] = [...images];
+      let failed = 0;
       for (const file of Array.from(files)) {
         if (!file.type.startsWith("image/")) continue;
-        const formData = new FormData();
-        formData.append("file", file);
-        const res = await fetch("/api/upload", {
-          method: "POST",
-          credentials: "include",
-          body: formData,
-        });
-        if (res.ok) {
-          const { url } = (await res.json()) as { url: string };
-          urls.push(url);
+        try {
+          urls.push(await uploadImage(file, uploadMode));
+        } catch (err) {
+          console.error("Image upload failed", err);
+          failed += 1;
         }
       }
       onChange(urls);
+      if (failed > 0) {
+        setError(
+          failed === 1
+            ? "One image failed to upload."
+            : `${failed} images failed to upload.`
+        );
+      }
       setUploading(false);
     },
-    [disabled, images, onChange]
+    [disabled, images, onChange, uploadMode]
   );
 
   const removeImage = (index: number) => {
@@ -78,6 +109,11 @@ export function ImageDropzone({
             }}
           />
         </div>
+      )}
+      {error && (
+        <p className="owner-bar__error" role="alert">
+          {error}
+        </p>
       )}
       {images.length > 0 && (
         <div

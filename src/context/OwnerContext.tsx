@@ -9,8 +9,11 @@ import {
   type ReactNode,
 } from "react";
 
+export type UploadMode = "blob" | "local";
+
 interface OwnerContextValue {
   isOwner: boolean;
+  uploadMode: UploadMode;
   isLoading: boolean;
   login: (password: string) => Promise<boolean>;
   logout: () => Promise<void>;
@@ -23,11 +26,27 @@ export function OwnerProvider({ children }: { children: ReactNode }) {
   const [isOwner, setIsOwner] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
+  const [uploadMode, setUploadMode] = useState<UploadMode>("local");
+
   const refresh = useCallback(async () => {
-    const res = await fetch("/api/auth/session", { credentials: "include" });
-    const data = (await res.json()) as { isOwner: boolean };
-    setIsOwner(data.isOwner);
-    setIsLoading(false);
+    try {
+      const res = await fetch("/api/auth/session", { credentials: "include" });
+      if (res.ok) {
+        const data = (await res.json()) as {
+          isOwner: boolean;
+          uploadMode?: UploadMode;
+        };
+        setIsOwner(data.isOwner);
+        if (data.uploadMode) setUploadMode(data.uploadMode);
+      } else {
+        setIsOwner(false);
+      }
+    } catch {
+      setIsOwner(false);
+    } finally {
+      // Always show the sign-in dot, even if the session check failed.
+      setIsLoading(false);
+    }
   }, []);
 
   useEffect(() => {
@@ -42,9 +61,9 @@ export function OwnerProvider({ children }: { children: ReactNode }) {
       body: JSON.stringify({ password }),
     });
     if (!res.ok) return false;
-    setIsOwner(true);
+    await refresh();
     return true;
-  }, []);
+  }, [refresh]);
 
   const logout = useCallback(async () => {
     await fetch("/api/auth/logout", { method: "POST", credentials: "include" });
@@ -53,7 +72,7 @@ export function OwnerProvider({ children }: { children: ReactNode }) {
 
   return (
     <OwnerContext.Provider
-      value={{ isOwner, isLoading, login, logout, refresh }}
+      value={{ isOwner, uploadMode, isLoading, login, logout, refresh }}
     >
       {children}
     </OwnerContext.Provider>
